@@ -130,6 +130,8 @@ swiftc -typecheck app/Sources/main.swift \
 
 ## 宠物来源与感谢
 
+特别感谢 [ayangweb/bongocat](https://github.com/ayangweb/bongocat) 以及 BongoCat 的创作者与贡献者。之所以有这个项目，是因为我很喜欢他们做的这只猫猫，所以希望它不只出现在原来的应用中，也能在使用 DeepSeek Harness 时更多地陪伴自己。BongoCat 是 DeskPet 的默认宠物，也是这个项目的起点。
+
 感谢以下开源项目、宠物市场、素材社区以及所有宠物创作者。没有这些项目对格式、素材和社区生态的贡献，DeskPet 的宠物商店无法实现：
 
 - [Awesome Codex Pet](https://github.com/legeling/awesome-codex-pet)

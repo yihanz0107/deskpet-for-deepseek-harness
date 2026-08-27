@@ -89,6 +89,8 @@ Project code is MIT licensed. Third-party pet artwork, characters, and trademark
 
 ## Pet Sources & Thanks
 
+Special thanks to [ayangweb/bongocat](https://github.com/ayangweb/bongocat) and everyone who created and contributed to BongoCat. This project exists because I love the cat they made, and I wanted it to spend more time by my side—not only in its original application, but also while I use DeepSeek Harness. BongoCat is the default DeskPet and the starting point of this project.
+
 Our sincere thanks go to the following open-source projects, pet markets, asset communities, maintainers, and pet creators. Their work on formats, artwork, tooling, and community catalogs makes the DeskPet catalog possible:
 
 - [Awesome Codex Pet](https://github.com/legeling/awesome-codex-pet)
