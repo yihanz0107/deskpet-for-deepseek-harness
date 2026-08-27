@@ -17,9 +17,9 @@ A native macOS desktop-pet companion for [DeepSeek Harness](https://github.com/d
 - Catalogs: Awesome Codex Pet, Codex Pets, PetDex, SpriteYard, AgentBro, OpenPets, and Codex Anime Pets.
 - Infinite-scroll catalog, retryable downloads, safe image validation, and blank fallback for broken previews.
 
-## Bundled pets
+## Default pet
 
-BongoCat is the default. The package also ships with Anya, Shen Xinghui, and the pets present in the maintainer's local **My Pets** collection when this package was assembled. On first launch, missing bundled pets are seeded without overwriting user-installed versions.
+BongoCat is the default pet.
 
 Pet artwork is not covered by this repository's MIT code license. See [THIRD_PARTY_PETS.md](THIRD_PARTY_PETS.md). Keep forks containing third-party character art private until redistribution rights have been confirmed.
 

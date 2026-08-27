@@ -17,9 +17,9 @@
 - 可从 Awesome Codex Pet、Codex Pets、PetDex、SpriteYard、AgentBro、OpenPets 和 Codex Anime Pets 查找、下载、更新与删除宠物。
 - 商店采用滚动到底自动加载；损坏的预览图保持空白，不显示裂图。
 
-## 随安装包附带的宠物
+## 默认宠物
 
-默认宠物为 BongoCat。安装包还会附带 Anya、沈星回，以及制作安装包时本机“我的宠物”中的宠物。首次启动只复制尚不存在的宠物，不会覆盖用户已经修改或更新的版本。
+默认宠物为 BongoCat。
 
 宠物素材不自动继承本仓库的 MIT 代码许可证。来源和使用限制见 [THIRD_PARTY_PETS.md](THIRD_PARTY_PETS.md)。包含第三方角色素材的仓库建议先保持私有；公开发布前请确认每个素材的再分发权限。
 
