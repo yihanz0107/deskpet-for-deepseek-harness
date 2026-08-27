@@ -1,0 +1,11 @@
+{
+  "description" : "A soft pastel animated otter pet holding a tiny lantern.",
+  "displayName" : "Otter",
+  "id" : "codex-pets--otter",
+  "ownerHandle" : "gjj666",
+  "previewURL" : "https:\/\/codex-pets.net\/assets\/pets\/v\/1778815460757\/otter\/poster.webp",
+  "source" : "codex-pets",
+  "sourcePetID" : "otter",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

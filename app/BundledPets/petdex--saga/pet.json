@@ -1,0 +1,10 @@
+{
+  "description" : "A soft white Japanese Spitz dog desktop companion with a curious, friendly personality.",
+  "displayName" : "Saga",
+  "id" : "petdex--saga",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/saga\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "saga",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 2
+}

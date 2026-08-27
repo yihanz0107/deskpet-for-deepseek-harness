@@ -1,0 +1,10 @@
+{
+  "description" : "line-puppy和线条小狗：为中文用户制作的手绘白色线条小狗，带有爱心、音乐符号、彩带、接电话、星星棒和害羞出错反应。",
+  "displayName" : "Line Puppy 线条小狗",
+  "id" : "petdex--line-puppy",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/line-puppy\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "line-puppy",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

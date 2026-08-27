@@ -1,0 +1,10 @@
+{
+  "description" : "A minimalist beige puppy matching the provided Maltese Line Puppy-style reference.",
+  "displayName" : "Little Mao Puppy",
+  "id" : "petdex--little-mao-puppy",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/little-mao-puppy\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "little-mao-puppy",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

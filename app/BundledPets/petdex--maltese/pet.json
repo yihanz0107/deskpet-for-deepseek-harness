@@ -1,0 +1,10 @@
+{
+  "description" : "A lively little Maltese with a big heart.",
+  "displayName" : "Maltese",
+  "id" : "petdex--maltese",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/maltese\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "maltese",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

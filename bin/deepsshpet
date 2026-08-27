@@ -1,0 +1,62 @@
+#!/bin/sh
+set -eu
+
+config_file=${DEEPSSHPET_CONFIG:-"$HOME/.config/deepsshpet/harness-path"}
+service_url=${DEEPSEEK_HARNESS_URL:-"http://127.0.0.1:3080"}
+pet_url='http://127.0.0.1:3081'
+pet_app=${DESKPET_APP_DIR:-"$HOME/Applications/DeepSS Pet.app"}
+
+valid_harness() {
+  [ -n "${1:-}" ] && [ -f "$1/package.json" ] && [ -f "$1/apps/web/index.html" ]
+}
+
+find_harness() {
+  if valid_harness "${DEEPSEEK_HARNESS_HOME:-}"; then
+    printf '%s\n' "$DEEPSEEK_HARNESS_HOME"
+    return 0
+  fi
+  if [ -f "$config_file" ]; then
+    saved_root=$(sed -n '1p' "$config_file")
+    if valid_harness "$saved_root"; then
+      printf '%s\n' "$saved_root"
+      return 0
+    fi
+  fi
+  for candidate_root in "$HOME/deepseek-harness" "$HOME/Projects/deepseek-harness" "$HOME/Documents/deepseek-harness" "$HOME/Desktop/deepseek-harness"; do
+    if valid_harness "$candidate_root"; then
+      printf '%s\n' "$candidate_root"
+      return 0
+    fi
+  done
+  if command -v mdfind >/dev/null 2>&1; then
+    mdfind 'kMDItemFSName == "deepseek-harness"c' | while IFS= read -r found_root; do
+      if valid_harness "$found_root"; then
+        printf '%s\n' "$found_root"
+        break
+      fi
+    done
+  fi
+}
+
+if [ -d "$pet_app" ] && ! /usr/bin/curl --fail --silent --max-time 1 "$pet_url/state" >/dev/null 2>&1; then
+  /usr/bin/open "$pet_app"
+fi
+
+if /usr/bin/curl --fail --silent --max-time 1 "$service_url" >/dev/null 2>&1; then
+  if ! /usr/bin/curl --fail --silent --max-time 2 --request POST "$pet_url/focus" >/dev/null 2>&1; then
+    /usr/bin/open "$service_url"
+  fi
+  printf 'DeepSeek Harness is already running: %s\n' "$service_url"
+  exit 0
+fi
+
+harness_root=$(find_harness || true)
+if ! valid_harness "$harness_root"; then
+  printf 'Could not locate DeepSeek Harness. Re-run install.sh --harness /path/to/deepseek-harness\n' >&2
+  exit 1
+fi
+
+mkdir -p "$(dirname "$config_file")"
+printf '%s\n' "$harness_root" > "$config_file"
+cd "$harness_root"
+exec pnpm dsh web

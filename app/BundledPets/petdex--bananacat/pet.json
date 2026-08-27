@@ -1,0 +1,10 @@
+{
+  "description" : "The beloved meme icon: a tiny orange tabby cat in a banana suit, with big sad shiny eyes. This spritesheet includes walking and idle frames.",
+  "displayName" : "BananaCat",
+  "id" : "petdex--bananacat",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/bananacat\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "bananacat",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

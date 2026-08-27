@@ -1,0 +1,10 @@
+{
+  "description" : "Github : LxNx-Hn \/\/ A tiny Cinnamonroll pixel pet for gentle coding sessions.",
+  "displayName" : "Cinnamonroll",
+  "id" : "petdex--cinnamonroll",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/cinnamonroll\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "cinnamonroll",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

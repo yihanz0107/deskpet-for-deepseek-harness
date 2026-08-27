@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>CFBundleExecutable</key><string>DeepSSPet</string>
+  <key>CFBundleIdentifier</key><string>local.deepss.pet</string>
+  <key>CFBundleName</key><string>DeepSS Pet</string>
+  <key>CFBundleDisplayName</key><string>DeepSS Pet</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>1.0</string>
+  <key>LSMinimumSystemVersion</key><string>13.0</string>
+  <key>LSUIElement</key><true/>
+  <key>NSHighResolutionCapable</key><true/>
+  <key>NSAppleEventsUsageDescription</key><string>聚焦已经打开的 DeepSeek Harness 浏览器标签页，不重新加载页面。</string>
+</dict></plist>

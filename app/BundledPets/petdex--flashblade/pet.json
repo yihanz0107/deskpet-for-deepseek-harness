@@ -1,0 +1,10 @@
+{
+  "description" : "A tiny chibi lightning swordswoman with long golden hair, white-and-red armor, and a slender silver rapier.",
+  "displayName" : "Flashblade",
+  "id" : "petdex--flashblade",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/flashblade\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "flashblade",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

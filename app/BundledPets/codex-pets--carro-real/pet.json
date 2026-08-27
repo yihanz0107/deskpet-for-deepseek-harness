@@ -1,0 +1,11 @@
+{
+  "description" : "A plush carrot companion that walks, waves, jumps, waits, and reacts sadly.",
+  "displayName" : "Carro Real",
+  "id" : "codex-pets--carro-real",
+  "ownerHandle" : "rickeylai",
+  "previewURL" : "https:\/\/codex-pets.net\/assets\/pets\/v\/1778513779207\/carro-real\/poster.webp",
+  "source" : "codex-pets",
+  "sourcePetID" : "carro-real",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

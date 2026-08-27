@@ -1,0 +1,10 @@
+{
+  "description" : "A small white office cat mascot based on the provided 月薪喵 reference images, adapted as a Codex pet.",
+  "displayName" : "月薪喵",
+  "id" : "petdex--yuexinmiao",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/yuexinmiao\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "yuexinmiao",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

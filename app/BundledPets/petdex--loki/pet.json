@@ -1,0 +1,10 @@
+{
+  "description" : "An aloof, tsundere ragdoll cat with bright blue eyes and a fluffy white chest.",
+  "displayName" : "饭团",
+  "id" : "petdex--loki",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/loki\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "loki",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

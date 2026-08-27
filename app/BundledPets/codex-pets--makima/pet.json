@@ -1,0 +1,11 @@
+{
+  "description" : "A tiny Codex digital pet inspired by Makima: calm, unnervingly composed, red-haired, golden ring-eyed, in a simplified black-and-white suit.",
+  "displayName" : "Makima",
+  "id" : "codex-pets--makima",
+  "ownerHandle" : "mayss",
+  "previewURL" : "https:\/\/codex-pets.net\/assets\/pets\/v\/1777901560851\/makima\/poster.webp",
+  "source" : "codex-pets",
+  "sourcePetID" : "makima",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

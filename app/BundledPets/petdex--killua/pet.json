@@ -1,0 +1,10 @@
+{
+  "description" : "A high-quality Killua Zoldyck Codex pet matching Gon, with Shadow Gait idle, assassin movement, Godspeed lightning, yo-yos, and bloodlust focus animations.",
+  "displayName" : "Killua",
+  "id" : "petdex--killua",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/killua\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "killua",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}

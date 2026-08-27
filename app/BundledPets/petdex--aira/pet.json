@@ -1,0 +1,10 @@
+{
+  "description" : "Aira, a hand-drawn little fox companion: gentle, clever, quietly proud, and always looking up. Created with love by Omnitopia.",
+  "displayName" : "Aira",
+  "id" : "petdex--aira",
+  "previewURL" : "https:\/\/assets.petdex.dev\/pets\/aira\/preview.webp",
+  "source" : "petdex",
+  "sourcePetID" : "aira",
+  "spritesheetPath" : "spritesheet.webp",
+  "spriteVersionNumber" : 1
+}
