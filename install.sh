@@ -27,20 +27,34 @@ valid_harness() {
 }
 
 find_harness() {
-  for candidate_root in "$requested_harness" "${DEEPSEEK_HARNESS_HOME:-}" "$HOME/deepseek-harness" "$HOME/Projects/deepseek-harness" "$HOME/Documents/deepseek-harness" "$HOME/Desktop/deepseek-harness"; do
+  saved_root=''
+  if [ -f "$HOME/.config/deepsshpet/harness-path" ]; then
+    saved_root=$(sed -n '1p' "$HOME/.config/deepsshpet/harness-path")
+  fi
+  for candidate_root in "$requested_harness" "${DEEPSEEK_HARNESS_HOME:-}" "$saved_root" "$HOME/deepseek-harness" "$HOME/Projects/deepseek-harness" "$HOME/Documents/deepseek-harness" "$HOME/Desktop/deepseek-harness"; do
     if valid_harness "$candidate_root"; then
       printf '%s\n' "$candidate_root"
       return 0
     fi
   done
   if command -v mdfind >/dev/null 2>&1; then
-    mdfind 'kMDItemFSName == "deepseek-harness"c' | while IFS= read -r found_root; do
+    located_root=$(mdfind 'kMDItemFSName == "deepseek-harness"c' | while IFS= read -r found_root; do
       if valid_harness "$found_root"; then
         printf '%s\n' "$found_root"
         break
       fi
-    done
+    done)
+    if valid_harness "$located_root"; then
+      printf '%s\n' "$located_root"
+      return 0
+    fi
   fi
+  find "$HOME" -maxdepth 4 -type d -name deepseek-harness 2>/dev/null | while IFS= read -r found_root; do
+    if valid_harness "$found_root"; then
+      printf '%s\n' "$found_root"
+      break
+    fi
+  done
 }
 
 harness_root=$(find_harness || true)
