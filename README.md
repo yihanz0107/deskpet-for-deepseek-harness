@@ -26,8 +26,7 @@ Pet artwork is not covered by this repository's MIT code license. See [THIRD_PAR
 ## Requirements
 
 - macOS 13 or later
-- Node.js and pnpm
-- A working DeepSeek Harness source checkout that can run `pnpm dsh web`
+- Git, pnpm, and a Node.js version supported by DeepSeek Harness (22.19+ in the Node.js 22 line, or 24+)
 
 ## Install
 
@@ -37,7 +36,7 @@ cd deskpet-for-deepseek-harness
 ./install.sh
 ```
 
-The installer searches environment variables, saved configuration, common folders, and Spotlight for the Harness checkout. To specify it explicitly:
+The installer searches environment variables, saved configuration, common folders, and Spotlight for the Harness checkout. If none is found, it automatically clones the latest DeepSeek Harness from GitHub into `~/deepseek-harness` and installs its dependencies. To use or create a checkout at a specific path:
 
 ```bash
 ./install.sh --harness /path/to/deepseek-harness

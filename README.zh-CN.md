@@ -27,8 +27,7 @@
 
 - macOS 13 或更高版本
 - Apple Silicon 或能够运行 Swift/AppKit 的 Mac
-- 已安装 Node.js、pnpm 和 DeepSeek Harness 源码
-- DeepSeek Harness 已能通过 `pnpm dsh web` 正常启动
+- 已安装 Git、Node.js 22.19 或更高版本和 pnpm
 
 ## 安装
 
@@ -38,9 +37,9 @@ cd deskpet-for-deepseek-harness
 ./install.sh
 ```
 
-安装器会通过环境变量、保存的配置、常用目录和 Spotlight 自动查找 `deepseek-harness`。
+安装器会通过环境变量、保存的配置、常用目录和 Spotlight 自动查找 `deepseek-harness`。如果没有找到，会自动从 GitHub 克隆最新版到 `~/deepseek-harness` 并安装依赖。
 
-如果没有自动找到，可以明确指定：
+也可以指定已有源码或希望自动安装到的路径：
 
 ```bash
 ./install.sh --harness /你的路径/deepseek-harness

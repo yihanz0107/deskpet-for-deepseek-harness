@@ -26,6 +26,28 @@ valid_harness() {
   [ -n "${1:-}" ] && [ -f "$1/package.json" ] && [ -f "$1/apps/web/index.html" ]
 }
 
+install_harness() {
+  install_root=${requested_harness:-${DEEPSEEK_HARNESS_HOME:-"$HOME/deepseek-harness"}}
+
+  if [ -e "$install_root" ]; then
+    printf 'Cannot install DeepSeek Harness: %s already exists but is not a valid checkout.\n' "$install_root" >&2
+    exit 1
+  fi
+  if ! command -v git >/dev/null 2>&1; then
+    printf 'Cannot install DeepSeek Harness automatically: git is not installed.\n' >&2
+    exit 1
+  fi
+
+  printf 'DeepSeek Harness was not found. Installing the latest version from GitHub...\n' >&2
+  mkdir -p "$(dirname "$install_root")"
+  git clone --depth 1 https://github.com/deepseek-ai/deepseek-harness.git "$install_root"
+  if ! valid_harness "$install_root"; then
+    printf 'The downloaded DeepSeek Harness checkout is not valid: %s\n' "$install_root" >&2
+    exit 1
+  fi
+  printf '%s\n' "$install_root"
+}
+
 find_harness() {
   saved_root=''
   if [ -f "$HOME/.config/deepsshpet/harness-path" ]; then
@@ -59,8 +81,25 @@ find_harness() {
 
 harness_root=$(find_harness || true)
 if ! valid_harness "$harness_root"; then
-  printf 'DeepSeek Harness was not found. Use: ./install.sh --harness /path/to/deepseek-harness\n' >&2
+  harness_root=$(install_harness)
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  printf 'Node.js is required. Install a version supported by DeepSeek Harness, then run this installer again.\n' >&2
   exit 1
+fi
+if ! node -e 'const [major, minor] = process.versions.node.split(".").map(Number); process.exit((major === 22 && minor >= 19) || major >= 24 ? 0 : 1)' >/dev/null 2>&1; then
+  printf 'DeepSeek Harness requires Node.js 22.19+ in the Node.js 22 line, or Node.js 24+.\n' >&2
+  exit 1
+fi
+if ! command -v pnpm >/dev/null 2>&1; then
+  printf 'pnpm is required. Install pnpm, then run this installer again.\n' >&2
+  exit 1
+fi
+
+if [ ! -d "$harness_root/node_modules" ]; then
+  printf 'Installing DeepSeek Harness dependencies...\n'
+  (cd "$harness_root" && pnpm install --frozen-lockfile)
 fi
 
 "$project_root/build.sh"
@@ -89,7 +128,9 @@ mkdir -p "$launcher_dir"
 /bin/chmod +x "$launcher_dir/deepsshpet"
 
 if [ "$build_web" = true ]; then
-  (cd "$harness_root" && pnpm run build:web)
+  # A fresh Harness checkout has no generated workspace artifacts yet. The
+  # root build creates those artifacts before it builds the Web frontend.
+  (cd "$harness_root" && pnpm run build)
 fi
 
 printf 'Installed deepsshpet: %s\n' "$launcher_dir/deepsshpet"
