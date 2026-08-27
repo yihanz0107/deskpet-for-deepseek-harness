@@ -86,3 +86,17 @@ swiftc -typecheck app/Sources/main.swift \
 ## License
 
 Project code is MIT licensed. Third-party pet artwork, characters, and trademarks remain subject to their respective owners and source terms; see [THIRD_PARTY_PETS.md](THIRD_PARTY_PETS.md).
+
+## Pet Sources & Thanks
+
+Our sincere thanks go to the following open-source projects, pet markets, asset communities, maintainers, and pet creators. Their work on formats, artwork, tooling, and community catalogs makes the DeskPet catalog possible:
+
+- [Awesome Codex Pet](https://github.com/legeling/awesome-codex-pet)
+- [Codex Pets](https://codex-pets.net/)
+- [PetDex](https://petdex.dev/)
+- [SpriteYard](https://www.spriteyard.com/)
+- [AgentBro Pet Market](https://www.agentbro.net/pets)
+- [OpenPets](https://openpets.dev/gallery)
+- [Codex Anime Pets](https://github.com/chenxin-dlut/codex-anime-pets)
+
+Special thanks to everyone who draws, uploads, maintains, and shares desktop pets. DeskPet provides technical compatibility and local loading only; all artwork copyrights, licenses, character rights, and trademarks remain with their original creators and respective rights holders.

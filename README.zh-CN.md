@@ -127,3 +127,17 @@ swiftc -typecheck app/Sources/main.swift \
 ## 许可证
 
 本项目代码采用 MIT License。第三方宠物图像、人物和商标仍属于各自权利人，详见 [THIRD_PARTY_PETS.md](THIRD_PARTY_PETS.md)。
+
+## 宠物来源与感谢
+
+感谢以下开源项目、宠物市场、素材社区以及所有宠物创作者。没有这些项目对格式、素材和社区生态的贡献，DeskPet 的宠物商店无法实现：
+
+- [Awesome Codex Pet](https://github.com/legeling/awesome-codex-pet)
+- [Codex Pets](https://codex-pets.net/)
+- [PetDex](https://petdex.dev/)
+- [SpriteYard](https://www.spriteyard.com/)
+- [AgentBro Pet Market](https://www.agentbro.net/pets)
+- [OpenPets](https://openpets.dev/gallery)
+- [Codex Anime Pets](https://github.com/chenxin-dlut/codex-anime-pets)
+
+特别感谢每位上传、绘制、维护和分享宠物的创作者。DeskPet 只提供技术兼容和本地加载能力，宠物素材的版权、许可和商标归原作者及相关权利人所有。
