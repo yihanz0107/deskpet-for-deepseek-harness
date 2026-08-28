@@ -27,7 +27,11 @@ A macOS desktop companion for [DeepSeek Harness](https://github.com/deepseek-ai/
 
 ![Chinese desktop-pet settings](docs/images/desktop-pet-settings-zh.jpg)
 
-### Pet store
+### English pet store
+
+![English pet store](docs/images/pet-store-en.png)
+
+### Chinese pet store
 
 ![Pet store](docs/images/pet-store-zh.jpg)
 

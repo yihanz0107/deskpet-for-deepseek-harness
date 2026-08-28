@@ -27,9 +27,13 @@
 
 ![英文桌宠设置](docs/images/desktop-pet-settings-en.jpg)
 
-### 宠物商店
+### 中文宠物商店
 
 ![宠物商店](docs/images/pet-store-zh.jpg)
+
+### 英文宠物商店
+
+![英文宠物商店](docs/images/pet-store-en.png)
 
 ## 默认宠物
 
