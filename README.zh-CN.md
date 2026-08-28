@@ -67,6 +67,8 @@ deepsshpet
 
 该命令不是只启动宠物：它会启动桌宠和 DeepSeek Harness。若 Harness 已经在运行，则直接聚焦现有页面，不会重复启动服务。
 
+首次启动时，如果环境变量、Harness 凭据文件和 `.env` 中都没有 `DEEPSEEK_API_KEY`，命令会先安全提示用户输入，并以仅当前用户可读写的权限保存到 `~/.dsh/.credentials.yaml`。
+
 也可以临时指定位置：
 
 ```bash

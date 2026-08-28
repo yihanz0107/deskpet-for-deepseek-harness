@@ -5,6 +5,8 @@ config_file=${DEEPSSHPET_CONFIG:-"$HOME/.config/deepsshpet/harness-path"}
 service_url=${DEEPSEEK_HARNESS_URL:-"http://127.0.0.1:3080"}
 pet_url='http://127.0.0.1:3081'
 pet_app=${DESKPET_APP_DIR:-"$HOME/Applications/DeepSS Pet.app"}
+dsh_home=${DSH_HOME:-"$HOME/.dsh"}
+credentials_file="$dsh_home/.credentials.yaml"
 
 valid_harness() {
   [ -n "${1:-}" ] && [ -f "$1/package.json" ] && [ -f "$1/apps/web/index.html" ]
@@ -38,6 +40,89 @@ find_harness() {
   fi
 }
 
+dotenv_has_key() {
+  [ -f "$1" ] && /usr/bin/grep -Eq '^[[:space:]]*(export[[:space:]]+)?DEEPSEEK_API_KEY[[:space:]]*=[[:space:]]*[^[:space:]#]' "$1"
+}
+
+credentials_have_key() {
+  [ -f "$credentials_file" ] || return 1
+  (
+    cd "$harness_root"
+    CREDENTIALS_FILE="$credentials_file" node -e '
+      const { readFileSync } = require("node:fs");
+      const { createRequire } = require("node:module");
+      const { parseDocument } = createRequire(process.cwd() + "/packages/credentials/credentials-local/package.json")("yaml");
+      try {
+        const document = parseDocument(readFileSync(process.env.CREDENTIALS_FILE, "utf8"));
+        const value = document.getIn(["refs", "DEEPSEEK_API_KEY"]);
+        process.exit(typeof value === "string" && value.trim() ? 0 : 1);
+      } catch { process.exit(1); }
+    '
+  )
+}
+
+save_api_key() {
+  mkdir -p "$dsh_home"
+  /bin/chmod 700 "$dsh_home"
+  printf '%s' "$1" | (
+    cd "$harness_root"
+    CREDENTIALS_FILE="$credentials_file" node -e '
+      const { existsSync, readFileSync, writeFileSync } = require("node:fs");
+      const { createRequire } = require("node:module");
+      const { Document, parseDocument } = createRequire(process.cwd() + "/packages/credentials/credentials-local/package.json")("yaml");
+      let value = "";
+      process.stdin.setEncoding("utf8");
+      process.stdin.on("data", chunk => { value += chunk; });
+      process.stdin.on("end", () => {
+        if (!value.trim()) process.exit(2);
+        const filename = process.env.CREDENTIALS_FILE;
+        const document = existsSync(filename)
+          ? parseDocument(readFileSync(filename, "utf8"))
+          : new Document({ version: 1, refs: {}, records: {} });
+        if (document.errors.length) process.exit(3);
+        if (document.get("version") === undefined) document.set("version", 1);
+        if (document.get("refs") === undefined) document.set("refs", {});
+        if (document.get("records") === undefined) document.set("records", {});
+        document.setIn(["refs", "DEEPSEEK_API_KEY"], value.trim());
+        writeFileSync(filename, String(document), { mode: 0o600 });
+      });
+    '
+  )
+  /bin/chmod 600 "$credentials_file"
+}
+
+ensure_api_key() {
+  if [ -n "${DEEPSEEK_API_KEY:-}" ] || credentials_have_key || dotenv_has_key "$harness_root/.env" || dotenv_has_key "$dsh_home/.env"; then
+    return 0
+  fi
+
+  if [ -t 0 ]; then
+    case "${LANG:-}" in
+      zh*) printf '首次启动需要 DeepSeek API Key，请输入（输入内容不会显示）：' >&2 ;;
+      *) printf 'DeepSeek API Key is required for first launch (input hidden): ' >&2 ;;
+    esac
+    /bin/stty -echo
+    trap '/bin/stty echo' EXIT HUP INT TERM
+    IFS= read -r api_key || api_key=''
+    /bin/stty echo
+    trap - EXIT HUP INT TERM
+    printf '\n' >&2
+  else
+    IFS= read -r api_key || api_key=''
+  fi
+
+  if [ -z "$api_key" ]; then
+    printf 'DeepSeek API Key cannot be empty.\n' >&2
+    exit 1
+  fi
+  if ! save_api_key "$api_key"; then
+    printf 'Could not save the DeepSeek API Key to %s.\n' "$credentials_file" >&2
+    exit 1
+  fi
+  unset api_key
+  printf 'DeepSeek API Key saved securely in %s.\n' "$credentials_file"
+}
+
 if [ -d "$pet_app" ] && ! /usr/bin/curl --fail --silent --max-time 1 "$pet_url/state" >/dev/null 2>&1; then
   /usr/bin/open "$pet_app"
 fi
@@ -58,6 +143,8 @@ if ! valid_harness "$harness_root"; then
   printf 'Could not locate DeepSeek Harness. Re-run install.sh --harness /path/to/deepseek-harness\n' >&2
   exit 1
 fi
+
+ensure_api_key
 
 mkdir -p "$(dirname "$config_file")"
 printf '%s\n' "$harness_root" > "$config_file"

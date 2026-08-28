@@ -52,6 +52,8 @@ deepsshpet
 
 This command starts both DeepSeek Harness and the desktop pet. If Harness is already running, it focuses the existing page instead of starting a duplicate service or opening another tab.
 
+On first launch, if no `DEEPSEEK_API_KEY` is available from the environment, Harness credential store, or `.env`, the command securely prompts for one and saves it to `~/.dsh/.credentials.yaml` with owner-only permissions.
+
 You may override discovery for one run:
 
 ```bash
