@@ -27,7 +27,7 @@
 
 - macOS 13 或更高版本
 - Apple Silicon 或能够运行 Swift/AppKit 的 Mac
-- 已安装 Git、Node.js 22.19 或更高版本和 pnpm
+- 已安装 Git。若缺少 Node.js 或 pnpm，安装器会通过国内 npmmirror 自动安装一套当前用户专用的兼容工具链；已有兼容版本不会被改动。
 
 ## 安装
 

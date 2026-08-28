@@ -1,6 +1,10 @@
 #!/bin/sh
 set -eu
 
+toolchain_root=${DEEPSSHPET_TOOLCHAIN_DIR:-"$HOME/.local/share/deepsshpet/toolchain"}
+PATH="$toolchain_root/pnpm/bin:$toolchain_root/node-current/bin:$PATH"
+export PATH
+
 config_file=${DEEPSSHPET_CONFIG:-"$HOME/.config/deepsshpet/harness-path"}
 service_url=${DEEPSEEK_HARNESS_URL:-"http://127.0.0.1:3080"}
 pet_url='http://127.0.0.1:3081'

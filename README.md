@@ -26,7 +26,7 @@ Pet artwork is not covered by this repository's MIT code license. See [THIRD_PAR
 ## Requirements
 
 - macOS 13 or later
-- Git, pnpm, and a Node.js version supported by DeepSeek Harness (22.19+ in the Node.js 22 line, or 24+)
+- Git. If Node.js or pnpm is missing, the installer installs a private compatible toolchain from the China-hosted npmmirror; existing compatible installations are left unchanged.
 
 ## Install
 
