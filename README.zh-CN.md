@@ -1,4 +1,4 @@
-# DeskPet for DeepSeek Harness
+# Codex DeskPet for DeepSeek Harness
 
 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 提供的原生 macOS 桌面宠物，**全面兼容所有采用 Codex v1/v2 标准图集的 Codex 宠物仓库**。宠物悬浮在整个系统桌面层，能够拖动、响应鼠标动作、显示快捷语，并跟随 Harness 的运行、等待、完成和失败状态播放动画。
 
@@ -46,8 +46,8 @@
 ## 安装
 
 ```bash
-git clone https://github.com/yihanz0107/deskpet-for-deepseek-harness.git
-cd deskpet-for-deepseek-harness
+git clone https://github.com/yihanz0107/codex-deskpet-for-deepseek-harness.git
+cd codex-deskpet-for-deepseek-harness
 ./install.sh
 ```
 

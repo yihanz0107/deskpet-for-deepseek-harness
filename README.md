@@ -1,4 +1,4 @@
-# DeskPet for DeepSeek Harness
+# Codex DeskPet for DeepSeek Harness
 
 A native macOS desktop-pet companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), **compatible with every Codex pet repository that uses the Codex v1/v2 atlas standard**. It lives in a transparent system-wide desktop window, reacts to Harness task states, displays the current task and editable quick phrases, and can be managed from a dedicated Harness settings section.
 
@@ -45,8 +45,8 @@ Pet artwork is not covered by this repository's MIT code license. See [THIRD_PAR
 ## Install
 
 ```bash
-git clone https://github.com/yihanz0107/deskpet-for-deepseek-harness.git
-cd deskpet-for-deepseek-harness
+git clone https://github.com/yihanz0107/codex-deskpet-for-deepseek-harness.git
+cd codex-deskpet-for-deepseek-harness
 ./install.sh
 ```
 
