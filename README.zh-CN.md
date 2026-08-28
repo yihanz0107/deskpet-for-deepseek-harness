@@ -1,6 +1,6 @@
 # DeskPet for DeepSeek Harness
 
-为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 提供的原生 macOS 桌面宠物。宠物悬浮在整个系统桌面层，能够拖动、响应鼠标动作、显示快捷语，并跟随 Harness 的运行、等待、完成和失败状态播放动画。
+为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 提供的原生 macOS 桌面宠物，**全面兼容所有采用 Codex v1/v2 标准图集的 Codex 宠物仓库**。宠物悬浮在整个系统桌面层，能够拖动、响应鼠标动作、显示快捷语，并跟随 Harness 的运行、等待、完成和失败状态播放动画。
 
 [English](README.md)
 
@@ -13,8 +13,8 @@
 - 任务运行或等待确认时，在宠物上方显示当前任务。
 - 大小、位置、显示状态、当前宠物和快捷语均会保存。
 - 中文与英文界面跟随 DeepSeek Harness 当前语言。
-- 支持 Codex v1（1536×1872）和 v2（1536×2288）宠物图集。
-- 可从 Awesome Codex Pet、Codex Pets、PetDex、SpriteYard、AgentBro、OpenPets 和 Codex Anime Pets 查找、下载、更新与删除宠物。
+- **兼容所有 Codex 宠物仓库**：支持 Codex v1（1536×1872）和 v2（1536×2288）标准图集，并统一转换为可安装、可切换、可删除的本地宠物。
+- 已直接集成 Awesome Codex Pet、Codex Pets、PetDex、SpriteYard、AgentBro、OpenPets 和 Codex Anime Pets，可在线查找、下载与更新。
 - 商店采用滚动到底自动加载；损坏的预览图保持空白，不显示裂图。
 
 ## 默认宠物

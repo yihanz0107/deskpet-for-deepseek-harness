@@ -1,6 +1,6 @@
 # DeskPet for DeepSeek Harness
 
-A native macOS desktop-pet companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). It lives in a transparent system-wide desktop window, reacts to Harness task states, displays the current task and editable quick phrases, and can be managed from a dedicated Harness settings section.
+A native macOS desktop-pet companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), **compatible with every Codex pet repository that uses the Codex v1/v2 atlas standard**. It lives in a transparent system-wide desktop window, reacts to Harness task states, displays the current task and editable quick phrases, and can be managed from a dedicated Harness settings section.
 
 [简体中文](README.zh-CN.md)
 
@@ -13,8 +13,8 @@ A native macOS desktop-pet companion for [DeepSeek Harness](https://github.com/d
 - Running and waiting tasks appear in a bubble above the pet.
 - Saved scale, position, visibility, selected pet, and phrases.
 - English and Chinese UI follows the current Harness language.
-- Supports Codex v1 (1536×1872) and v2 (1536×2288) sprite atlases.
-- Catalogs: Awesome Codex Pet, Codex Pets, PetDex, SpriteYard, AgentBro, OpenPets, and Codex Anime Pets.
+- **Compatible with all Codex pet repositories:** supports standard Codex v1 (1536×1872) and v2 (1536×2288) atlases and converts them into installable, switchable, removable local pets.
+- Direct catalog integrations: Awesome Codex Pet, Codex Pets, PetDex, SpriteYard, AgentBro, OpenPets, and Codex Anime Pets.
 - Infinite-scroll catalog, retryable downloads, safe image validation, and blank fallback for broken previews.
 
 ## Default pet
