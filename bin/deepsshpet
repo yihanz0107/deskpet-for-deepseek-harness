@@ -42,7 +42,10 @@ if [ -d "$pet_app" ] && ! /usr/bin/curl --fail --silent --max-time 1 "$pet_url/s
   /usr/bin/open "$pet_app"
 fi
 
-if /usr/bin/curl --fail --silent --max-time 1 "$service_url" >/dev/null 2>&1; then
+# Harness requires a token and may answer an unauthenticated probe with 401.
+# Any HTTP response proves that the server owns the port; curl still fails when
+# the connection itself cannot be established.
+if /usr/bin/curl --silent --output /dev/null --max-time 1 "$service_url" >/dev/null 2>&1; then
   if ! /usr/bin/curl --fail --silent --max-time 2 --request POST "$pet_url/focus" >/dev/null 2>&1; then
     /usr/bin/open "$service_url"
   fi
