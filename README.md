@@ -17,6 +17,20 @@ A native macOS desktop-pet companion for [DeepSeek Harness](https://github.com/d
 - Direct catalog integrations: Awesome Codex Pet, Codex Pets, PetDex, SpriteYard, AgentBro, OpenPets, and Codex Anime Pets.
 - Infinite-scroll catalog, retryable downloads, safe image validation, and blank fallback for broken previews.
 
+## Screenshots
+
+### English desktop-pet settings
+
+![English desktop-pet settings](docs/images/desktop-pet-settings-en.jpg)
+
+### Chinese desktop-pet settings
+
+![Chinese desktop-pet settings](docs/images/desktop-pet-settings-zh.jpg)
+
+### Pet store
+
+![Pet store](docs/images/pet-store-zh.jpg)
+
 ## Default pet
 
 BongoCat is the default pet.

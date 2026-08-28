@@ -17,6 +17,20 @@
 - 已直接集成 Awesome Codex Pet、Codex Pets、PetDex、SpriteYard、AgentBro、OpenPets 和 Codex Anime Pets，可在线查找、下载与更新。
 - 商店采用滚动到底自动加载；损坏的预览图保持空白，不显示裂图。
 
+## 界面预览
+
+### 中文桌宠设置
+
+![中文桌宠设置](docs/images/desktop-pet-settings-zh.jpg)
+
+### 英文桌宠设置
+
+![英文桌宠设置](docs/images/desktop-pet-settings-en.jpg)
+
+### 宠物商店
+
+![宠物商店](docs/images/pet-store-zh.jpg)
+
 ## 默认宠物
 
 默认宠物为 BongoCat。
