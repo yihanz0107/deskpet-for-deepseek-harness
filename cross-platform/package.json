@@ -1,0 +1,12 @@
+{
+  "name": "deepsshpet-cross-platform",
+  "private": true,
+  "version": "1.0.0",
+  "main": "main.cjs",
+  "allowScripts": {
+    "electron": true
+  },
+  "dependencies": {
+    "electron": "^37.2.6"
+  }
+}

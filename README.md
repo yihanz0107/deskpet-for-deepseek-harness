@@ -1,6 +1,6 @@
 # Codex DeskPet for DeepSeek Harness
 
-A macOS desktop companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness), **compatible with the entire Codex pet ecosystem**. Let your favorite character stay with you while you work and wait for tasks to finish.
+A desktop companion for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) on macOS, Windows, and Linux, **compatible with the entire Codex pet ecosystem**. Let your favorite character stay with you while you work and wait for tasks to finish.
 
 [简体中文](README.zh-CN.md)
 
@@ -41,12 +41,14 @@ BongoCat is the default pet.
 
 ## Requirements
 
-- macOS 13 or later
+- macOS 13 or later, Windows 10/11, or a modern desktop Linux distribution
 - Git
 
 The installer prepares everything else automatically.
 
 ## Install
+
+### macOS and Linux
 
 ```bash
 git clone https://github.com/yihanz0107/codex-deskpet-for-deepseek-harness.git
@@ -54,7 +56,15 @@ cd codex-deskpet-for-deepseek-harness
 ./install.sh
 ```
 
-The installer finds DeepSeek Harness automatically and sets it up too when needed.
+### Windows (PowerShell)
+
+```powershell
+git clone https://github.com/yihanz0107/codex-deskpet-for-deepseek-harness.git
+cd codex-deskpet-for-deepseek-harness
+.\install.ps1
+```
+
+The installer detects your operating system, finds DeepSeek Harness automatically, and sets it up too when needed.
 
 ## Run
 

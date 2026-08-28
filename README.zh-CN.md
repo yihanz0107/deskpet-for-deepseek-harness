@@ -1,6 +1,6 @@
 # Codex DeskPet for DeepSeek Harness
 
-为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 打造的 macOS 桌面宠物，**全面兼容 Codex 宠物生态**。让喜欢的角色陪你工作，也陪你等待任务完成。
+为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 打造的 macOS、Windows 和 Linux 桌面宠物，**全面兼容 Codex 宠物生态**。让喜欢的角色陪你工作，也陪你等待任务完成。
 
 [English](README.md)
 
@@ -41,12 +41,14 @@
 
 ## 环境要求
 
-- macOS 13 或更高版本
+- macOS 13 或更高版本、Windows 10/11，或现代桌面 Linux 发行版
 - Git
 
 其他需要的组件会由安装器自动准备。
 
 ## 安装
+
+### macOS 和 Linux
 
 ```bash
 git clone https://github.com/yihanz0107/codex-deskpet-for-deepseek-harness.git
@@ -54,7 +56,15 @@ cd codex-deskpet-for-deepseek-harness
 ./install.sh
 ```
 
-安装器会自动找到 DeepSeek Harness；如果还没有安装，也会一并准备好。
+### Windows（PowerShell）
+
+```powershell
+git clone https://github.com/yihanz0107/codex-deskpet-for-deepseek-harness.git
+cd codex-deskpet-for-deepseek-harness
+.\install.ps1
+```
+
+安装器会自动检测操作系统并找到 DeepSeek Harness；如果还没有安装，也会一并准备好。
 
 ## 启动
 

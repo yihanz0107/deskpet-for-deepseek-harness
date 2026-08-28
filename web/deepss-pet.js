@@ -518,7 +518,7 @@
     page.id = 'deepss-pet-settings-page'
     page.hidden = true
     page.innerHTML = `
-      <div class="deepss-pet-head"><div><h2>${tr('桌面宠物', 'Desktop Pet')}</h2><p>${tr('让你的宠物在整个 macOS 桌面上陪伴 DeepSeek Harness 任务。', 'Let a desktop companion follow your DeepSeek Harness tasks across macOS.')}</p></div><button class="deepss-pet-primary" id="deepss-pet-find" type="button">${tr('找找新宠物', 'Find new pets')}</button></div>
+      <div class="deepss-pet-head"><div><h2>${tr('桌面宠物', 'Desktop Pet')}</h2><p>${tr('让你的宠物在整个桌面上陪伴 DeepSeek Harness 任务。', 'Let a desktop companion follow your DeepSeek Harness tasks across your desktop.')}</p></div><button class="deepss-pet-primary" id="deepss-pet-find" type="button">${tr('找找新宠物', 'Find new pets')}</button></div>
       <div class="deepss-pet-controls">
         <div class="deepss-pet-setting-card"><label for="deepss-pet-mode">${tr('动画状态', 'Animation state')}</label><select id="deepss-pet-mode"><option value="auto">${tr('自动跟随任务', 'Follow tasks automatically')}</option><option value="idle">${tr('待机', 'Idle')}</option><option value="waving">${tr('挥手', 'Wave')}</option><option value="jumping">${tr('跳跃', 'Jump')}</option><option value="waiting">${tr('等待', 'Waiting')}</option><option value="running">${tr('运行中', 'Running')}</option><option value="review">${tr('检查', 'Review')}</option><option value="failed">${tr('失败', 'Failed')}</option></select></div>
         <div class="deepss-pet-setting-card"><label for="deepss-pet-scale">${tr('宠物大小', 'Pet size')} <small>${tr('默认 0.5', 'Default 0.5')}</small></label><div class="deepss-pet-range-line"><input id="deepss-pet-scale" type="range" min="0.2" max="1.5" step="0.1" value="0.5"><output id="deepss-pet-scale-value">0.5</output></div></div>

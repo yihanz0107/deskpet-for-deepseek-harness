@@ -9,6 +9,8 @@ config_file=${DEEPSSHPET_CONFIG:-"$HOME/.config/deepsshpet/harness-path"}
 service_url=${DEEPSEEK_HARNESS_URL:-"http://127.0.0.1:3080"}
 pet_url='http://127.0.0.1:3081'
 pet_app=${DESKPET_APP_DIR:-"$HOME/Applications/DeepSS Pet.app"}
+host_os=$(uname -s)
+cross_pet_app=${DESKPET_CROSS_APP_DIR:-"$HOME/.local/share/deepsshpet/app"}
 dsh_home=${DSH_HOME:-"$HOME/.dsh"}
 credentials_file="$dsh_home/.credentials.yaml"
 
@@ -127,16 +129,30 @@ ensure_api_key() {
   printf 'DeepSeek API Key saved securely in %s.\n' "$credentials_file"
 }
 
-if [ -d "$pet_app" ] && ! /usr/bin/curl --fail --silent --max-time 1 "$pet_url/state" >/dev/null 2>&1; then
-  /usr/bin/open "$pet_app"
+start_pet() {
+  if [ "$host_os" = Darwin ] && [ -d "$pet_app" ]; then
+    open "$pet_app"
+  elif [ "$host_os" = Linux ] && [ -x "$cross_pet_app/node_modules/.bin/electron" ]; then
+    nohup "$cross_pet_app/node_modules/.bin/electron" "$cross_pet_app" >"${TMPDIR:-/tmp}/deepsshpet.log" 2>&1 &
+  fi
+}
+
+open_url() {
+  if [ "$host_os" = Darwin ]; then open "$1"
+  elif command -v xdg-open >/dev/null 2>&1; then xdg-open "$1" >/dev/null 2>&1 &
+  fi
+}
+
+if ! curl --fail --silent --max-time 1 "$pet_url/state" >/dev/null 2>&1; then
+  start_pet
 fi
 
 # Harness requires a token and may answer an unauthenticated probe with 401.
 # Any HTTP response proves that the server owns the port; curl still fails when
 # the connection itself cannot be established.
-if /usr/bin/curl --silent --output /dev/null --max-time 1 "$service_url" >/dev/null 2>&1; then
-  if ! /usr/bin/curl --fail --silent --max-time 2 --request POST "$pet_url/focus" >/dev/null 2>&1; then
-    /usr/bin/open "$service_url"
+if curl --silent --output /dev/null --max-time 1 "$service_url" >/dev/null 2>&1; then
+  if ! curl --fail --silent --max-time 2 --request POST "$pet_url/focus" >/dev/null 2>&1; then
+    open_url "$service_url"
   fi
   printf 'DeepSeek Harness is already running: %s\n' "$service_url"
   exit 0

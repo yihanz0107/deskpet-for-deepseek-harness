@@ -2,6 +2,7 @@
 set -eu
 
 project_root=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+host_os=${DEEPSSHPET_OS:-$(uname -s)}
 requested_harness=''
 build_web=true
 toolchain_root=${DEEPSSHPET_TOOLCHAIN_DIR:-"$HOME/.local/share/deepsshpet/toolchain"}
@@ -16,9 +17,14 @@ node_is_supported() {
 }
 
 install_node_from_china_mirror() {
+  case "$host_os" in
+    Darwin) node_platform=darwin ;;
+    Linux) node_platform=linux ;;
+    *) printf 'Automatic Node.js installation is not supported on %s.\n' "$host_os" >&2; exit 1 ;;
+  esac
   case "$(uname -m)" in
-    arm64) node_arch=arm64 ;;
-    x86_64) node_arch=x64 ;;
+    arm64|aarch64) node_arch=arm64 ;;
+    x86_64|amd64) node_arch=x64 ;;
     *) printf 'Automatic Node.js installation does not support this CPU: %s\n' "$(uname -m)" >&2; exit 1 ;;
   esac
 
@@ -43,14 +49,15 @@ install_node_from_china_mirror() {
   fi
 
   archive="$download_root/node.tar.gz"
-  package_name="node-$node_version-darwin-$node_arch"
+  package_name="node-$node_version-$node_platform-$node_arch"
   /usr/bin/curl --location --fail --show-error --progress-bar \
     "https://registry.npmmirror.com/-/binary/node/$node_version/$package_name.tar.gz" \
     --output "$archive"
   /usr/bin/tar -xzf "$archive" -C "$download_root"
   node_root="$toolchain_root/$package_name"
   mkdir -p "$toolchain_root"
-  /usr/bin/ditto "$download_root/$package_name" "$node_root"
+  mkdir -p "$node_root"
+  cp -R "$download_root/$package_name/." "$node_root/"
   /bin/ln -sfn "$node_root" "$toolchain_root/node-current"
   /bin/rm -rf "$download_root"
   trap - EXIT HUP INT TERM
@@ -69,6 +76,13 @@ install_pnpm_from_china_mirror() {
 }
 
 prepend_local_toolchain
+
+case "$host_os" in
+  Darwin) printf 'Detected macOS. Installing the native desktop pet.\n' ;;
+  Linux) printf 'Detected Linux. Installing the cross-platform desktop pet.\n' ;;
+  MINGW*|MSYS*|CYGWIN*) printf 'Windows detected. Please run PowerShell: .\\install.ps1\n' >&2; exit 2 ;;
+  *) printf 'Unsupported operating system: %s\n' "$host_os" >&2; exit 1 ;;
+esac
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -166,27 +180,31 @@ fi
 
 "$project_root/build.sh"
 
-/usr/bin/ditto "$project_root/web/deepss-pet.js" "$harness_root/apps/web/public/deepss-pet.js"
+cp "$project_root/web/deepss-pet.js" "$harness_root/apps/web/public/deepss-pet.js"
 index_file="$harness_root/apps/web/index.html"
-if /usr/bin/grep -q 'deepss-pet.js' "$index_file"; then
-  /usr/bin/perl -0pi -e 's#<script src="/deepss-pet\.js(?:\?v=[^"]*)?"></script>#<script src="/deepss-pet.js?v=20260828"></script>#g' "$index_file"
-else
-  /usr/bin/perl -0pi -e 's#</body>#    <script src="/deepss-pet.js?v=20260828"></script>\n  </body>#' "$index_file"
-fi
+INDEX_FILE="$index_file" node - <<'NODE'
+const fs = require('node:fs')
+const file = process.env.INDEX_FILE
+let html = fs.readFileSync(file, 'utf8')
+const tag = '<script src="/deepss-pet.js?v=20260828"></script>'
+html = /<script src="\/deepss-pet\.js(?:\?v=[^"]*)?"><\/script>/.test(html)
+  ? html.replace(/<script src="\/deepss-pet\.js(?:\?v=[^"]*)?"><\/script>/g, tag)
+  : html.replace('</body>', `    ${tag}\n  </body>`)
+fs.writeFileSync(file, html)
+NODE
 
 config_dir="$HOME/.config/deepsshpet"
 mkdir -p "$config_dir"
 printf '%s\n' "$harness_root" > "$config_dir/harness-path"
 
 launcher_dir="$HOME/.local/bin"
-for candidate_dir in /opt/homebrew/bin /usr/local/bin; do
-  if [ -d "$candidate_dir" ] && [ -w "$candidate_dir" ]; then
-    launcher_dir="$candidate_dir"
-    break
-  fi
-done
+if [ "$host_os" = Darwin ]; then
+  for candidate_dir in /opt/homebrew/bin /usr/local/bin; do
+    if [ -d "$candidate_dir" ] && [ -w "$candidate_dir" ]; then launcher_dir="$candidate_dir"; break; fi
+  done
+fi
 mkdir -p "$launcher_dir"
-/usr/bin/ditto "$project_root/bin/deepsshpet" "$launcher_dir/deepsshpet"
+cp "$project_root/bin/deepsshpet" "$launcher_dir/deepsshpet"
 /bin/chmod +x "$launcher_dir/deepsshpet"
 
 if [ "$build_web" = true ]; then
@@ -198,3 +216,6 @@ fi
 printf 'Installed deepsshpet: %s\n' "$launcher_dir/deepsshpet"
 printf 'DeepSeek Harness: %s\n' "$harness_root"
 printf 'Run: deepsshpet\n'
+if [ "$host_os" = Linux ]; then
+  case ":$PATH:" in *":$launcher_dir:"*) ;; *) printf 'Add %s to PATH if the command is not found.\n' "$launcher_dir" ;; esac
+fi
