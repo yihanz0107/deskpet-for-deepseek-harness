@@ -1,21 +1,21 @@
 # Codex DeskPet for DeepSeek Harness
 
-为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 提供的原生 macOS 桌面宠物，**全面兼容所有采用 Codex v1/v2 标准图集的 Codex 宠物仓库**。宠物悬浮在整个系统桌面层，能够拖动、响应鼠标动作、显示快捷语，并跟随 Harness 的运行、等待、完成和失败状态播放动画。
+为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 打造的 macOS 桌面宠物，**全面兼容 Codex 宠物生态**。让喜欢的角色陪你工作，也陪你等待任务完成。
 
 [English](README.md)
 
 ## 功能
 
 - 在 DeepSeek Harness 的“设置”中增加独立的“桌面宠物”栏目。
-- 在 macOS 全局桌面显示透明、可拖动、置顶的宠物窗口。
-- 双击宠物时聚焦已打开的 Harness 标签页，不刷新、不重复打开。
-- 单击随机播放动作并显示可编辑的宠物快捷语。
+- 宠物常驻桌面，可以自由拖动。
+- 双击宠物即可回到已经打开的 Harness 页面。
+- 单击触发随机动作和自定义快捷语。
 - 任务运行或等待确认时，在宠物上方显示当前任务。
 - 大小、位置、显示状态、当前宠物和快捷语均会保存。
 - 中文与英文界面跟随 DeepSeek Harness 当前语言。
-- **兼容所有 Codex 宠物仓库**：支持 Codex v1（1536×1872）和 v2（1536×2288）标准图集，并统一转换为可安装、可切换、可删除的本地宠物。
+- **兼容所有 Codex 宠物仓库**，下载后即可切换和使用。
 - 已直接集成 Awesome Codex Pet、Codex Pets、PetDex、SpriteYard、AgentBro、OpenPets 和 Codex Anime Pets，可在线查找、下载与更新。
-- 商店采用滚动到底自动加载；损坏的预览图保持空白，不显示裂图。
+- 宠物商店支持搜索、筛选和滚动自动加载。
 
 ## 界面预览
 
@@ -35,13 +35,12 @@
 
 默认宠物为 BongoCat。
 
-宠物素材不自动继承本仓库的 MIT 代码许可证。来源和使用限制见 [THIRD_PARTY_PETS.md](THIRD_PARTY_PETS.md)。包含第三方角色素材的仓库建议先保持私有；公开发布前请确认每个素材的再分发权限。
-
 ## 环境要求
 
 - macOS 13 或更高版本
-- Apple Silicon 或能够运行 Swift/AppKit 的 Mac
-- 已安装 Git。若缺少 Node.js 或 pnpm，安装器会通过国内 npmmirror 自动安装一套当前用户专用的兼容工具链；已有兼容版本不会被改动。
+- Git
+
+其他需要的组件会由安装器自动准备。
 
 ## 安装
 
@@ -51,27 +50,7 @@ cd codex-deskpet-for-deepseek-harness
 ./install.sh
 ```
 
-安装器会通过环境变量、保存的配置、常用目录和 Spotlight 自动查找 `deepseek-harness`。如果没有找到，会自动从 GitHub 克隆最新版到 `~/deepseek-harness` 并安装依赖。
-
-也可以指定已有源码或希望自动安装到的路径：
-
-```bash
-./install.sh --harness /你的路径/deepseek-harness
-```
-
-安装器会：
-
-1. 编译并安装 `~/Applications/DeepSS Pet.app`。
-2. 将 Web 设置扩展安装到 Harness 的 `apps/web/public/`。
-3. 在 Harness 设置页入口中加载桌宠扩展。
-4. 重新构建 Harness Web 前端。
-5. 安装 `deepsshpet` 命令并保存 Harness 路径。
-
-如只想安装而暂不重新构建 Web：
-
-```bash
-./install.sh --harness /你的路径/deepseek-harness --no-build-web
-```
+安装器会自动找到 DeepSeek Harness；如果还没有安装，也会一并准备好。
 
 ## 启动
 
@@ -81,13 +60,7 @@ deepsshpet
 
 该命令不是只启动宠物：它会启动桌宠和 DeepSeek Harness。若 Harness 已经在运行，则直接聚焦现有页面，不会重复启动服务。
 
-首次启动时，如果环境变量、Harness 凭据文件和 `.env` 中都没有 `DEEPSEEK_API_KEY`，命令会先安全提示用户输入，并以仅当前用户可读写的权限保存到 `~/.dsh/.credentials.yaml`。
-
-也可以临时指定位置：
-
-```bash
-DEEPSEEK_HARNESS_HOME=/你的路径/deepseek-harness deepsshpet
-```
+首次启动如果还没有 API Key，会先提示输入。
 
 ## 使用
 
@@ -95,7 +68,7 @@ DEEPSEEK_HARNESS_HOME=/你的路径/deepseek-harness deepsshpet
 
 - “我的宠物”用于切换或删除已经安装的宠物。
 - “找找新宠物”打开全屏宠物商店。
-- “宠物大小”支持 0.2–1.5 倍，默认 0.5。
+- 可以自由调节宠物大小。
 - “宠物快捷语”每行一句，保存后单击宠物会随机显示。
 - 动画状态默认为自动跟随任务，也可以手动固定。
 
@@ -103,41 +76,9 @@ DEEPSEEK_HARNESS_HOME=/你的路径/deepseek-harness deepsshpet
 
 - 鼠标移入：挥手。
 - 单击：随机动作和快捷语。
-- 拖动：移动宠物，左右方向动画保持固定帧率。
+- 拖动：移动宠物。
 - 双击：返回已经打开的 Harness 页面。
 - 右键：挥手、隐藏或退出桌宠。
-
-## 目录
-
-```text
-app/                 原生 AppKit 桌宠源码和随包宠物
-bin/deepsshpet       Harness + 桌宠启动命令
-web/deepss-pet.js    Harness 设置与宠物商店扩展
-build.sh             构建原生应用
-install.sh           自动定位并安装到 Harness
-```
-
-用户下载的宠物保存在：
-
-```text
-~/Library/Application Support/DeepSS Pet/pets/
-```
-
-Harness 路径保存在：
-
-```text
-~/.config/deepsshpet/harness-path
-```
-
-## 开发验证
-
-```bash
-node --check web/deepss-pet.js
-swiftc -typecheck app/Sources/main.swift \
-  -framework AppKit -framework CoreGraphics \
-  -framework ImageIO -framework Network
-./build.sh
-```
 
 ## 许可证
 
